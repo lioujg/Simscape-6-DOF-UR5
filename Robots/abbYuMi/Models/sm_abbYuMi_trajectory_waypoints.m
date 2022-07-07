@@ -28,7 +28,7 @@ frameVariables(ks)
 targetIDsL = ["HandL.Translation.x";"HandL.Translation.y";"HandL.Translation.z";"HandL.Rotation.x";"HandL.Rotation.y";"HandL.Rotation.z"];
 addTargetVariables(ks,targetIDsL);
 
-targetsL1 = [0.4, 0.4, 0.4   0  0 0]; % m, deg
+targetsL1 = [0.0 0.225 0.392   0  90 -90]; % m, deg
 targetsL2 = [0.1, 0.3, 0.1   0 90 0]; % m, deg
 targetsL3 = [0.1, 0.3, 0.02  0 90 0]; % m, deg
 targetsL4 = [0.4, 0.0, 0.15   0 90 -90]; % m, deg
@@ -52,8 +52,9 @@ addInitialGuessVariables(ks,outputIDsL);
 guessesL = [50 30 0 0 0 0 -130]; % initial state
 
 clear waypoint*
-waypointL1 = ks.solve(targetsL1,guessesL);
-viewSolution(ks);
+% waypointL1 = ks.solve(targetsL1,guessesL);
+% viewSolution(ks);
+waypointL1 = [45; 0; 0; 0; 0; 0; 0];
 
 waypointL2 = ks.solve(targetsL2,waypointL1);
 viewSolution(ks);
@@ -85,8 +86,9 @@ addInitialGuessVariables(ks,outputIDsR);
 
 %% Use kinematic solver to get joint angles
 guessesR = [15 -35 -63 24 65 80 20];
-waypointR1 = ks.solve(targetsR1,guessesR);
-viewSolution(ks);
+% waypointR1 = ks.solve(targetsR1,guessesR);
+% viewSolution(ks);
+waypointR1 = [-45; 0; 0; 0; 0; 0; 0];
 
 waypointR2 = ks.solve(targetsR2,waypointR1);
 viewSolution(ks);
