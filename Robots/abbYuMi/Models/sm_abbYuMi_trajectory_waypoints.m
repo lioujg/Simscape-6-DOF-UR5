@@ -7,9 +7,10 @@ open_system(sys);
 waypointsL = ones(7,1);
 waypointsR = ones(7,1);
 ks = simscape.multibody.KinematicsSolver(sys);
+segment_duration = 1.5;
 
 %% List joints
-ks.jointPositionVariables
+ks.jointPositionVariables;
 
 %% Add frame variable for end effector relative to world
 base = [sys '/Robot/World/W'];
@@ -29,10 +30,16 @@ targetIDsL = ["HandL.Translation.x";"HandL.Translation.y";"HandL.Translation.z";
 addTargetVariables(ks,targetIDsL);
 
 % targetsL1 = [0.0 0.225 0.392   0  90 -90]; % m, deg
-targetsL2 = [0.1, 0.2, 0.3   0 180 -90]; % m, deg
-targetsL3 = [0.1, 0.4, 0.3  0 180 -90]; % m, deg
-targetsL4 = [0.1, 0.2, 0.3   0 180 -90]; % m, deg
-targetsL5 = [0.1, 0.4, 0.3  0 180 -90]; % m, deg
+% x direction
+targetsL2 = [0.0, 0.3, 0.3   0 180 -90]; % m, deg
+targetsL3 = [0.2, 0.3, 0.3  0 180 -90]; % m, deg
+% y direction
+targetsL4 = [0.1, 0.1, 0.3   0 180 -90]; % m, deg
+targetsL5 = [0.1, 0.3, 0.3  0 180 -90]; % m, deg
+targetsL6 = [0.1, 0.5, 0.3  0 180 -90]; % m, deg
+% z direction
+targetsL7 = [0.1, 0.3, 0.2   0 180 -90]; % m, deg
+targetsL8 = [0.1, 0.3, 0.4  0 180 -90]; % m, deg
 
 % targetsR1 = [0.4, -0.4, 0.4  0  0 0]; % m, deg
 targetsR2 = [0.1, -0.3, 0.1  0 90 0]; % m, deg
@@ -68,9 +75,34 @@ viewSolution(ks);
 waypointL5 = ks.solve(targetsL5,waypointL4);
 viewSolution(ks);
 
+waypointL6 = ks.solve(targetsL6,waypointL5);
+viewSolution(ks);
 
-% waypoint_com
-waypointsL = ([waypointL1 waypointL2 waypointL3 waypointL4 waypointL5 waypointL4 waypointL3 waypointL2 waypointL1 waypointL2 waypointL3 waypointL4 waypointL5 waypointL4])*pi/180;
+waypointL7 = ks.solve(targetsL7,waypointL6);
+viewSolution(ks);
+
+waypointL8 = ks.solve(targetsL8,waypointL7);
+viewSolution(ks);
+
+waypointsL_com =   [waypointL1'
+                    waypointL2'
+                    waypointL3'
+                    waypointL2'
+                    waypointL3'
+                    waypointL4'
+                    waypointL5'
+                    waypointL6'
+                    waypointL5'
+                    waypointL4'
+                    waypointL5'
+                    waypointL6'
+                    waypointL7'
+                    waypointL8'
+                    waypointL7'
+                    waypointL8'
+                    waypointL1'];
+waypointsL = (waypointsL_com')*pi/180;
+% waypointsL = ([waypointL1 waypointL2 waypointL3 waypointL2 waypointL3 waypointL4 waypointL5 waypointL6 waypointL5 waypointL4 waypointL5 waypointL6 waypointL7 waypointL8 waypointL7 waypointL8 waypointL1])*pi/180;
 
 %% Clear ks to prepare calculation for right gripper
 clearOutputVariables(ks);
