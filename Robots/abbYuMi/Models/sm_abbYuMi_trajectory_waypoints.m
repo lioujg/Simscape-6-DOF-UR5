@@ -28,13 +28,13 @@ frameVariables(ks)
 targetIDsL = ["HandL.Translation.x";"HandL.Translation.y";"HandL.Translation.z";"HandL.Rotation.x";"HandL.Rotation.y";"HandL.Rotation.z"];
 addTargetVariables(ks,targetIDsL);
 
-targetsL1 = [0.0 0.225 0.392   0  90 -90]; % m, deg
-targetsL2 = [0.1, 0.3, 0.1   0 90 0]; % m, deg
-targetsL3 = [0.1, 0.3, 0.02  0 90 0]; % m, deg
-targetsL4 = [0.4, 0.0, 0.15   0 90 -90]; % m, deg
-targetsL5 = [0.4, 0.0, 0.04  0 90 -90]; % m, deg
+% targetsL1 = [0.0 0.225 0.392   0  90 -90]; % m, deg
+targetsL2 = [0.1, 0.2, 0.3   0 180 -90]; % m, deg
+targetsL3 = [0.1, 0.4, 0.3  0 180 -90]; % m, deg
+targetsL4 = [0.1, 0.2, 0.3   0 180 -90]; % m, deg
+targetsL5 = [0.1, 0.4, 0.3  0 180 -90]; % m, deg
 
-targetsR1 = [0.4, -0.4, 0.4  0  0 0]; % m, deg
+% targetsR1 = [0.4, -0.4, 0.4  0  0 0]; % m, deg
 targetsR2 = [0.1, -0.3, 0.1  0 90 0]; % m, deg
 targetsR3 = [0.1, -0.3, 0.02 0 90 0]; % m, deg
 targetsR4 = [0.4, -0.0, 0.1  0 90 90]; % m, deg
@@ -68,7 +68,9 @@ viewSolution(ks);
 waypointL5 = ks.solve(targetsL5,waypointL4);
 viewSolution(ks);
 
-waypointsL = ([waypointL1';waypointL2';waypointL3';waypointL3';waypointL2';waypointL4';waypointL5';waypointL5';waypointL4';waypointL1';waypointL1';waypointL1';waypointL1';waypointL1']')*pi/180;
+
+% waypoint_com
+waypointsL = ([waypointL1 waypointL2 waypointL3 waypointL4 waypointL5 waypointL4 waypointL3 waypointL2 waypointL1 waypointL2 waypointL3 waypointL4 waypointL5 waypointL4])*pi/180;
 
 %% Clear ks to prepare calculation for right gripper
 clearOutputVariables(ks);
@@ -102,5 +104,5 @@ viewSolution(ks);
 waypointR5 = ks.solve(targetsR5,waypointR4);
 viewSolution(ks);
 
-waypointsR = ([waypointR1';waypointR1';waypointR1';waypointR1';waypointR1';waypointR2';waypointR3';waypointR3';waypointR2';waypointR4';waypointR5';waypointR5';waypointR4';waypointR1']')*pi/180;
+waypointsR = ([waypointR1';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3']')*pi/180;
 
