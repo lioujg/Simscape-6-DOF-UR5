@@ -69,8 +69,8 @@ waypointL5 = ks.solve(targetsL5,waypointL4);
 viewSolution(ks);
 
 
-% waypoint_com
-waypointsL = ([waypointL1 waypointL2 waypointL3 waypointL4 waypointL5 waypointL4 waypointL3 waypointL2 waypointL1 waypointL2 waypointL3 waypointL4 waypointL5 waypointL4])*pi/180;
+
+waypointsL = ([waypointL1 waypointL2 waypointL3 waypointL4 waypointL5 waypointL4 waypointL3 waypointL2 waypointL1' waypointL2' waypointL3' waypointL4' waypointL5' waypointL4'])*pi/180;
 
 %% Clear ks to prepare calculation for right gripper
 clearOutputVariables(ks);
