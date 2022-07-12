@@ -29,6 +29,7 @@ frameVariables(ks)
 targetIDsL = ["HandL.Translation.x";"HandL.Translation.y";"HandL.Translation.z";"HandL.Rotation.x";"HandL.Rotation.y";"HandL.Rotation.z"];
 addTargetVariables(ks,targetIDsL);
 
+%% Left Arm
 % targetsL1 = [0.0 0.225 0.392   0  90 -90]; % m, deg
 % x direction
 targetsL2 = [0.0, 0.3, 0.3   0 180 -90]; % m, deg
@@ -38,9 +39,14 @@ targetsL4 = [0.1, 0.1, 0.3   0 180 -90]; % m, deg
 targetsL5 = [0.1, 0.3, 0.3  0 180 -90]; % m, deg
 targetsL6 = [0.1, 0.5, 0.3  0 180 -90]; % m, deg
 % z direction
-targetsL7 = [0.1, 0.3, 0.2   0 180 -90]; % m, deg
-targetsL8 = [0.1, 0.3, 0.4  0 180 -90]; % m, deg
+targetsL7 = [0.1, 0.3, 0.2   0 180 -60]; % m, deg
+targetsL8 = [0.1, 0.3, 0.4  0 180 -120]; % m, deg
 
+targetsL9 = [0.1, 0.3, 0.3   0   180 -90]; % m, deg
+targetsL10 = [0.1, 0.3, 0.3   -30 150 -60]; % m, deg
+targetsL11 = [0.1, 0.3, 0.3   30  210 -120]; % m, deg
+
+%% Right Arm
 % targetsR1 = [0.4, -0.4, 0.4  0  0 0]; % m, deg
 targetsR2 = [0.1, -0.3, 0.1  0 90 0]; % m, deg
 targetsR3 = [0.1, -0.3, 0.02 0 90 0]; % m, deg
@@ -84,6 +90,15 @@ viewSolution(ks);
 waypointL8 = ks.solve(targetsL8,waypointL7);
 viewSolution(ks);
 
+waypointL9 = ks.solve(targetsL9,waypointL8);
+viewSolution(ks);
+
+waypointL10 = ks.solve(targetsL10,waypointL9);
+viewSolution(ks);
+
+waypointL11 = ks.solve(targetsL11,waypointL10);
+viewSolution(ks);
+
 waypointsL_com =   [waypointL1'
                     waypointL2'
                     waypointL3'
@@ -96,11 +111,39 @@ waypointsL_com =   [waypointL1'
                     waypointL6'
                     waypointL5'
                     waypointL6'
-                    waypointL7'
-                    waypointL8'
-                    waypointL7'
-                    waypointL8'
-                    waypointL1'];
+                    ];
+
+waypointsL_ri    = [waypointL1'
+                    waypointL2'
+                    waypointL3'
+                    waypointL4'
+                    waypointL3'
+                    waypointL4'
+                    waypointL3'
+                    waypointL4'
+                    waypointL3'
+                    waypointL4'
+                    waypointL3'
+                    waypointL4'
+                    waypointL3'
+                    waypointL4'
+                    waypointL3'
+                    waypointL4'
+                    waypointL3'
+                    waypointL4'
+                    waypointL3'
+                    waypointL4'
+                    waypointL3'
+                    waypointL4'
+                    waypointL3'
+                    waypointL4'
+                    waypointL3'
+                    waypointL2'
+                    waypointL3'
+                    waypointL2'
+                    waypointL3'
+                    waypointL2'
+                    ];
 waypointsL = (waypointsL_com')*pi/180;
 % waypointsL = ([waypointL1 waypointL2 waypointL3 waypointL2 waypointL3 waypointL4 waypointL5 waypointL6 waypointL5 waypointL4 waypointL5 waypointL6 waypointL7 waypointL8 waypointL7 waypointL8 waypointL1])*pi/180;
 
