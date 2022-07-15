@@ -32,19 +32,24 @@ addTargetVariables(ks,targetIDsL);
 %% Left Arm
 % targetsL1 = [0.0 0.225 0.392   0  90 -90]; % m, deg
 % x direction
-targetsL2 = [0.0, 0.3, 0.3   0 180 -90]; % m, deg
-targetsL3 = [0.2, 0.3, 0.3  0 180 -90]; % m, deg
+targetsL2 = [0.2, 0.3, 0.4  0 180 -90]; % m, deg
+targetsL3 = [-0.2, 0.3, 0.4  0 180 -90]; % m, deg
 % y direction
-targetsL4 = [0.1, 0.1, 0.3   0 180 -90]; % m, deg
-targetsL5 = [0.1, 0.3, 0.3  0 180 -90]; % m, deg
-targetsL6 = [0.1, 0.5, 0.3  0 180 -90]; % m, deg
+% targetsL4 = [0.1, 0.1, 0.3  0 180 -90]; % m, deg
+targetsL5 = [0.1, 0.2, 0.3  0 195 -90]; % m, deg
+targetsL6 = [0.1, 0.5, 0.3  0 165 -90]; % m, deg
 % z direction
-targetsL7 = [0.1, 0.3, 0.2   0 180 -60]; % m, deg
-targetsL8 = [0.1, 0.3, 0.4  0 180 -120]; % m, deg
-
-targetsL9 = [0.1, 0.3, 0.3   0   180 -90]; % m, deg
-targetsL10 = [0.1, 0.3, 0.3   -30 150 -60]; % m, deg
-targetsL11 = [0.1, 0.3, 0.3   30  210 -120]; % m, deg
+targetsL7 = [0.1, 0.3, 0.2  0 180 -90]; % m, deg
+targetsL8 = [0.1, 0.3, 0.4  0 180 -90]; % m, deg
+% rotation
+targetsL9 = [0.1, 0.3, 0.3        0  180 -90]; % m, deg
+targetsL10 = [0.1, 0.3, 0.339    15  180 -90]; % m, deg
+targetsL11 = [0.1, 0.3, 0.3       0  135 -90]; % m, deg
+targetsL12 = [0.139, 0.3, 0.3     0  180 -75]; % m, deg
+% debug
+% targetsL9 = [0.1, 0.3, 0.3   0   180 -90]; % m, deg
+% targetsL10 = [0.1, 0.3, 0.3   -45   210 -90]; % m, deg
+% targetsL11 = [0.1, 0.3, 0.3   -45   150 -90]; % m, deg
 
 %% Right Arm
 % targetsR1 = [0.4, -0.4, 0.4  0  0 0]; % m, deg
@@ -99,9 +104,19 @@ viewSolution(ks);
 waypointL11 = ks.solve(targetsL11,waypointL10);
 viewSolution(ks);
 
+waypointL12 = ks.solve(targetsL12,waypointL11);
+viewSolution(ks);
+
+% waypointL13 = ks.solve(targetsL13,waypointL12);
+% viewSolution(ks);
+% 
+% waypointL14 = ks.solve(targetsL14,waypointL13);
+% viewSolution(ks);
+
 waypointsL_com =   [waypointL1'
                     waypointL2'
                     waypointL3'
+                    waypointL1'
                     waypointL2'
                     waypointL3'
                     waypointL4'
@@ -113,38 +128,37 @@ waypointsL_com =   [waypointL1'
                     waypointL6'
                     ];
 
-waypointsL_ri    = [waypointL1'
-                    waypointL2'
-                    waypointL3'
-                    waypointL4'
-                    waypointL3'
-                    waypointL4'
-                    waypointL3'
-                    waypointL4'
-                    waypointL3'
-                    waypointL4'
-                    waypointL3'
-                    waypointL4'
-                    waypointL3'
-                    waypointL4'
-                    waypointL3'
-                    waypointL4'
-                    waypointL3'
-                    waypointL4'
-                    waypointL3'
-                    waypointL4'
-                    waypointL3'
-                    waypointL4'
-                    waypointL3'
-                    waypointL4'
-                    waypointL3'
-                    waypointL2'
-                    waypointL3'
-                    waypointL2'
-                    waypointL3'
-                    waypointL2'
-                    ];
-waypointsL = (waypointsL_com')*pi/180;
+waypointsL_ri    =  [
+                     waypointL1'
+%                      waypointL9'
+%                      waypointL2'
+%                      waypointL3'
+%                      waypointL5'
+%                      waypointL6'
+%                      waypointL7'
+%                      waypointL8'
+                     ];
+for i=1:5
+    waypointsL_ri = [waypointsL_ri
+                     waypointL9'
+                     waypointL2'
+                     waypointL3'
+                     waypointL9'
+                     waypointL5'
+                     waypointL6'
+                     waypointL9'
+                     waypointL7'
+                     waypointL8'
+                     waypointL9'
+                     waypointL10'
+                     waypointL9'
+%                      waypointL11'
+%                      waypointL9'
+                     waypointL12'
+                     ];
+end
+
+waypointsL = (waypointsL_ri')*pi/180;
 % waypointsL = ([waypointL1 waypointL2 waypointL3 waypointL2 waypointL3 waypointL4 waypointL5 waypointL6 waypointL5 waypointL4 waypointL5 waypointL6 waypointL7 waypointL8 waypointL7 waypointL8 waypointL1])*pi/180;
 
 %% Clear ks to prepare calculation for right gripper
@@ -173,11 +187,11 @@ viewSolution(ks);
 waypointR3 = ks.solve(targetsR3,waypointR2);
 viewSolution(ks);
 
-waypointR4 = ks.solve(targetsR4,waypointR3);
-viewSolution(ks);
-
-waypointR5 = ks.solve(targetsR5,waypointR4);
-viewSolution(ks);
+% waypointR4 = ks.solve(targetsR4,waypointR3);
+% viewSolution(ks);
+% 
+% waypointR5 = ks.solve(targetsR5,waypointR4);
+% viewSolution(ks);
 
 waypointsR = ([waypointR1';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3']')*pi/180;
 
