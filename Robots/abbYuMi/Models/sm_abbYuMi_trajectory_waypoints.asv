@@ -1,10 +1,8 @@
 %% Generate joint angle waypoints for sm_abbYuMi model using inverse kinematics
 % Copyright 2021 The MathWorks, Inc.
 %% attached parameters
-stiff = 500;
+stiff = 100;
 damping = 10;
-lower_bound = -0.005;
-upper_bound = 0.005;
 %% Load model and generate kinematic solver object
 sys = 'sm_abbYuMi_trajectory';
 open_system(sys);
@@ -12,6 +10,10 @@ waypointsL = ones(7,1);
 waypointsR = ones(7,1);
 ks = simscape.multibody.KinematicsSolver(sys);
 segment_duration = 1.5;
+
+
+lower_bound = -0.005;
+upper_bound = 0.005;
 
 %% List joints
 ks.jointPositionVariables;
