@@ -8,6 +8,8 @@ waypointsL = ones(7,1);
 waypointsR = ones(7,1);
 ks = simscape.multibody.KinematicsSolver(sys);
 segment_duration = 1.5;
+lower_bound = -0.02;
+upper_bound = 0.02;
 
 %% List joints
 ks.jointPositionVariables;
@@ -32,20 +34,20 @@ addTargetVariables(ks,targetIDsL);
 %% Left Arm
 % targetsL1 = [0.0 0.225 0.392   0  90 -90]; % m, deg
 % x direction
-targetsL2 = [0.2, 0.3, 0.4  0 180 -90]; % m, deg
-targetsL3 = [-0.2, 0.3, 0.4  0 180 -90]; % m, deg
+targetsL2 = [-0.1, 0.1, 0.45  0 180 -90]; % m, deg
+targetsL3 = [-0.15, 0.1, 0.45  0 180 -90]; % m, deg
 % y direction
 % targetsL4 = [0.1, 0.1, 0.3  0 180 -90]; % m, deg
-targetsL5 = [0.1, 0.2, 0.3  0 195 -90]; % m, deg
-targetsL6 = [0.1, 0.5, 0.3  0 165 -90]; % m, deg
+targetsL5 = [-0.15, 0.2, 0.4  0 180 -90]; % m, deg
+targetsL6 = [-0.15, 0.1, 0.4  0 180 -90]; % m, deg
 % z direction
-targetsL7 = [0.1, 0.3, 0.2  0 180 -90]; % m, deg
-targetsL8 = [0.1, 0.3, 0.4  0 180 -90]; % m, deg
+targetsL7 = [-0.15, 0.1, 0.3  0 180 -90]; % m, deg
+targetsL8 = [-0.15, 0.1, 0.4  0 180 -90]; % m, deg
 % rotation
-targetsL9 = [0.1, 0.3, 0.3        0  180 -90]; % m, deg
-targetsL10 = [0.1, 0.3, 0.339    15  180 -90]; % m, deg
-targetsL11 = [0.1, 0.3, 0.3       0  135 -90]; % m, deg
-targetsL12 = [0.139, 0.3, 0.3     0  180 -75]; % m, deg
+targetsL9 = [0.1, 0.1, 0.5        0  180 -90]; % m, deg
+targetsL10 = [0.1, 0.1, 0.4453    15  180 -90]; % m, deg
+targetsL11 = [0.1, 0.1, 0.3       0  135 -90]; % m, deg
+targetsL12 = [0.1453, 0.1, 0.3     0  180 -75]; % m, deg
 % debug
 % targetsL9 = [0.1, 0.3, 0.3   0   180 -90]; % m, deg
 % targetsL10 = [0.1, 0.3, 0.3   -45   210 -90]; % m, deg
@@ -53,10 +55,22 @@ targetsL12 = [0.139, 0.3, 0.3     0  180 -75]; % m, deg
 
 %% Right Arm
 % targetsR1 = [0.4, -0.4, 0.4  0  0 0]; % m, deg
-targetsR2 = [0.1, -0.3, 0.1  0 90 0]; % m, deg
-targetsR3 = [0.1, -0.3, 0.02 0 90 0]; % m, deg
-targetsR4 = [0.4, -0.0, 0.1  0 90 90]; % m, deg
-targetsR5 = [0.4, -0.01, 0.08 0 90 90]; % m, deg
+% x direction
+targetsR2 = [-0.1, -0.18, 0.45  0 180  90]; % m, deg
+targetsR3 = [-0.15, -0.18, 0.45 0 180  90]; % m, deg
+% y direction
+% targetsR4 = [0.1, 0.1, 0.3  0 180 90]; % m, deg
+targetsR5 = [-0.15, -0.05, 0.4  0 180 90]; % m, deg
+targetsR6 = [-0.15,  -0.18, 0.4  0 180 90]; % m, deg
+% z direction
+targetsR7 = [-0.15, -0.17, 0.3  0 180 90]; % m, deg
+targetsR8 = [-0.15, -0.17, 0.4  0 180 90]; % m, deg
+% rotation
+targetsR9 = [0.1, -0.2, 0.5        0  180 90]; % m, deg
+targetsR10 = [0.1, -0.2, 0.3547    15  180 90]; % m, deg
+targetsR11 = [0.1, -0.2, 0.3       0  135 90]; % m, deg
+targetsR12 = [0.0547, -0.2, 0.3     0  180 105]; % m, deg
+
 
 %% Set joint angles as desired analysis outputs
 jointPositionVariables(ks)
@@ -75,37 +89,37 @@ clear waypoint*
 waypointL1 = [45; 0; 0; 0; 0; 0; 0];
 
 waypointL2 = ks.solve(targetsL2,waypointL1);
-viewSolution(ks);
+% viewSolution(ks);
 
 waypointL3 = ks.solve(targetsL3,waypointL2);
-viewSolution(ks);
+% viewSolution(ks);
 
-waypointL4 = ks.solve(targetsL4,waypointL3);
-viewSolution(ks);
+% waypointL4 = ks.solve(targetsL4,waypointL3);
+% viewSolution(ks);
 
-waypointL5 = ks.solve(targetsL5,waypointL4);
-viewSolution(ks);
+waypointL5 = ks.solve(targetsL5,waypointL3);
+% viewSolution(ks);
 
 waypointL6 = ks.solve(targetsL6,waypointL5);
-viewSolution(ks);
+% viewSolution(ks);
 
 waypointL7 = ks.solve(targetsL7,waypointL6);
-viewSolution(ks);
+% viewSolution(ks);
 
 waypointL8 = ks.solve(targetsL8,waypointL7);
-viewSolution(ks);
+% viewSolution(ks);
 
 waypointL9 = ks.solve(targetsL9,waypointL8);
-viewSolution(ks);
+% viewSolution(ks);
 
 waypointL10 = ks.solve(targetsL10,waypointL9);
-viewSolution(ks);
+% viewSolution(ks);
 
 waypointL11 = ks.solve(targetsL11,waypointL10);
-viewSolution(ks);
+% viewSolution(ks);
 
 waypointL12 = ks.solve(targetsL12,waypointL11);
-viewSolution(ks);
+% viewSolution(ks);
 
 % waypointL13 = ks.solve(targetsL13,waypointL12);
 % viewSolution(ks);
@@ -113,20 +127,20 @@ viewSolution(ks);
 % waypointL14 = ks.solve(targetsL14,waypointL13);
 % viewSolution(ks);
 
-waypointsL_com =   [waypointL1'
-                    waypointL2'
-                    waypointL3'
-                    waypointL1'
-                    waypointL2'
-                    waypointL3'
-                    waypointL4'
-                    waypointL5'
-                    waypointL6'
-                    waypointL5'
-                    waypointL6'
-                    waypointL5'
-                    waypointL6'
-                    ];
+% waypointsL_com =   [waypointL1'
+%                     waypointL2'
+%                     waypointL3'
+%                     waypointL1'
+%                     waypointL2'
+%                     waypointL3'
+% %                     waypointL4'
+%                     waypointL5'
+%                     waypointL6'
+%                     waypointL5'
+%                     waypointL6'
+%                     waypointL5'
+%                     waypointL6'
+%                     ];
 
 waypointsL_ri    =  [
                      waypointL1'
@@ -138,23 +152,18 @@ waypointsL_ri    =  [
 %                      waypointL7'
 %                      waypointL8'
                      ];
-for i=1:5
+for i=1
     waypointsL_ri = [waypointsL_ri
-                     waypointL9'
                      waypointL2'
                      waypointL3'
-                     waypointL9'
                      waypointL5'
                      waypointL6'
-                     waypointL9'
                      waypointL7'
                      waypointL8'
-                     waypointL9'
-                     waypointL10'
-                     waypointL9'
-%                      waypointL11'
 %                      waypointL9'
-                     waypointL12'
+%                      waypointL10'
+%                      waypointL9'
+%                      waypointL12'
                      ];
 end
 
@@ -171,7 +180,8 @@ clearTargetVariables(ks);
 targetIDsR = ["HandR.Translation.x";"HandR.Translation.y";"HandR.Translation.z";"HandR.Rotation.x";"HandR.Rotation.y";"HandR.Rotation.z"];
 addTargetVariables(ks,targetIDsR);
 
-outputIDsR = ["j12.Rz.q";"j13.Rz.q";"j18.Rz.q";"j14.Rz.q";"j15.Rz.q";"j16.Rz.q";"j17.Rz.q"];
+% outputIDsR = ["j12.Rz.q";"j13.Rz.q";"j18.Rz.q";"j14.Rz.q";"j15.Rz.q";"j16.Rz.q";"j17.Rz.q"];
+outputIDsR = ["j13.Rz.q";"j14.Rz.q";"j19.Rz.q";"j15.Rz.q";"j16.Rz.q";"j17.Rz.q";"j18.Rz.q"];
 addOutputVariables(ks,outputIDsR);
 addInitialGuessVariables(ks,outputIDsR);
 
@@ -182,16 +192,57 @@ guessesR = [15 -35 -63 24 65 80 20];
 waypointR1 = [-45; 0; 0; 0; 0; 0; 0];
 
 waypointR2 = ks.solve(targetsR2,waypointR1);
-viewSolution(ks);
+% viewSolution(ks);
 
 waypointR3 = ks.solve(targetsR3,waypointR2);
-viewSolution(ks);
+% viewSolution(ks);
 
 % waypointR4 = ks.solve(targetsR4,waypointR3);
 % viewSolution(ks);
-% 
-% waypointR5 = ks.solve(targetsR5,waypointR4);
+
+waypointR5 = ks.solve(targetsR5,waypointR3);
 % viewSolution(ks);
 
-waypointsR = ([waypointR1';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3']')*pi/180;
+waypointR6 = ks.solve(targetsR6,waypointR5);
+% viewSolution(ks);
+
+waypointR7 = ks.solve(targetsR7,waypointR6);
+% viewSolution(ks);
+
+waypointR8 = ks.solve(targetsR8,waypointR7);
+% viewSolution(ks);
+
+waypointR9 = ks.solve(targetsR9,waypointR8);
+% viewSolution(ks);
+
+waypointR10 = ks.solve(targetsR10,waypointR9);
+% viewSolution(ks);
+
+waypointR11 = ks.solve(targetsR11,waypointR10);
+% viewSolution(ks);
+
+waypointR12 = ks.solve(targetsR12,waypointR11);
+% viewSolution(ks);
+
+waypointsR_ri    =  [
+                     waypointR1'
+                     ];
+for i=1
+    waypointsR_ri = [waypointsR_ri
+                     waypointR2'
+                     waypointR3'
+                     waypointR5'
+                     waypointR6'
+                     waypointR7'
+                     waypointR8'
+%                      waypointR9'
+%                      waypointR10'
+%                      waypointR9'
+%                      waypointR12'
+                     ];
+end
+
+waypointsR = (waypointsR_ri')*pi/180;
+
+% waypointsR = ([waypointR1';waypointR2';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3';waypointR3']')*pi/180;
 
