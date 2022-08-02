@@ -16,7 +16,7 @@ ground_truth_r2 = [0, -0.175, 0];
 %% Mass
 figure(1)
 subplot('Position', [0.17, 0.1, 0.76, 0.8]);
-plot(t, mass, 'k', 'Linewidth', 1);
+plot(t, mass, 'Linewidth', 2);
 yline(ground_truth_m,'--','ground truth');
 grid on
 % ylim([-0.5 9])
