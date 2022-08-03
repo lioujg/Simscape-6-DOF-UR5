@@ -13,7 +13,7 @@ waypointsL = ones(7,1);
 waypointsR = ones(7,1);
 ks = simscape.multibody.KinematicsSolver(sys);
 segment_duration = 1.5;
-iterative = 5;
+iterative = 6;
 % size(waypointsL, 2) * segment_duration
 
 %% List joints

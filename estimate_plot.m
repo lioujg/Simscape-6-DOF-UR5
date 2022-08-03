@@ -119,3 +119,35 @@ y_label = ylabel('$r_2$', 'Interpreter', 'latex', 'rotation', 0);
 set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.44]);
 xlabel('Time (sec)', 'Fontsize', 11)
 legend('$r_{2x}$', '$r_{2y}$','$r_{2z}$', 'Interpreter', 'latex', 'Location','southeast')
+
+%% Normalized estimate errors
+% calculate
+mass_err_nor = abs((mass - ground_truth_m) / ground_truth_m);
+% COM_err_nor = abs(vecnorm((center_of_mass - ground_truth_COM), 2, 2) / norm(ground_truth_COM));
+I_err_nor = abs(vecnorm((moment_of_inertia - ground_truth_I), 2, 2) / norm(ground_truth_I));
+r1_err_nor = abs(vecnorm((grasp_point_1 - ground_truth_r1), 2, 2) / norm(ground_truth_r1));
+r2_err_nor = abs(vecnorm((grasp_point_2 - ground_truth_r2), 2, 2) / norm(ground_truth_r2));
+
+% plot
+figure(5)
+semilogy(t, mass_err_nor, 'Linewidth', 2)
+hold on
+% semilogy(t, COM_err_nor, 'Linewidth', 2)
+% hold on
+semilogy(t, I_err_nor, 'Linewidth', 2)
+hold on
+semilogy(t, r1_err_nor, 'Linewidth', 2)
+hold on
+semilogy(t, r2_err_nor, 'Linewidth', 2)
+grid on
+% ylim([0.000001, 100])
+xlim([0, t(end)])
+y_label = ylabel('$\frac{\left\Vert{\widetilde \theta}_o\right\Vert}{\left\Vert \theta_o\right\Vert}$', 'Interpreter', 'latex', 'rotation', 0);
+set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.41], 'FontSize',14);
+xlabel('Time (sec)', 'Fontsize', 11)
+m_lab = '$\frac{\left\Vert\widetilde m\right\Vert}{\left\Vert m\right\Vert}$';
+COM_lab = '$\frac{\left\Vert{\widetilde r}_p\right\Vert}{\left\Vert r_p\right\Vert}$';
+I_lab = '$\frac{\left\Vert\widetilde I\right\Vert}{\left\Vert I\right\Vert}$';
+r1_lab = '$\frac{\left\Vert{\widetilde r}_1\right\Vert}{\left\Vert r_1\right\Vert}$';
+r2_lab = '$\frac{\left\Vert{\widetilde r}_2\right\Vert}{\left\Vert r_2\right\Vert}$';
+legend(m_lab, I_lab, r1_lab, r2_lab, 'Interpreter', 'latex', 'FontSize',14)

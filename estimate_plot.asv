@@ -16,7 +16,7 @@ ground_truth_r2 = [0, -0.175, 0];
 %% Mass
 figure(1)
 subplot('Position', [0.17, 0.1, 0.76, 0.8]);
-plot(t, mass, 'b', 'Linewidth', 1);
+plot(t, mass, 'Linewidth', 2);
 yline(ground_truth_m,'--','ground truth');
 grid on
 % ylim([-0.5 9])
@@ -30,34 +30,34 @@ title('Mass', 'Fontsize', 11)
 %% Center of Mass
 figure(2)
 set(subplot(311), 'Position', [0.17, 0.7, 0.76, 0.2])
-plot(t, center_of_mass(:,1));
+plot(t, center_of_mass(:,1), 'k', 'Linewidth', 1);
 hold on
 yline(ground_truth_COM(1),'--','ground truth');
 grid on
 ylim([-0.003, 0.003])
 xlim([0, t(end)])
-y_label = ylabel('$m$', 'Interpreter', 'latex', 'rotation', 0);
+y_label = ylabel('$X$', 'Interpreter', 'latex', 'rotation', 0);
 set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.41]);
 title('Center of Mass', 'Fontsize', 11)
 
 set(subplot(312), 'Position', [0.17, 0.4, 0.76, 0.2])
-plot(t, center_of_mass(:,2));
+plot(t, center_of_mass(:,2), 'k', 'Linewidth', 1);
 hold on
 yline(ground_truth_COM(2),'--','ground truth');
 grid on
 ylim([-0.006, 0.02])
 xlim([0, t(end)])
-y_label = ylabel('$m$', 'Interpreter', 'latex', 'rotation', 0);
+y_label = ylabel('$Y$', 'Interpreter', 'latex', 'rotation', 0);
 set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.41]);
 
 set(subplot(313), 'Position', [0.17, 0.1, 0.76, 0.2])
-plot(t, center_of_mass(:,1));
+plot(t, center_of_mass(:,3), 'k', 'Linewidth', 1);
 hold on
-yline(ground_truth_COM(1),'--','ground truth');
+yline(ground_truth_COM(3),'--','ground truth');
 grid on
 ylim([-0.003, 0.003])
 xlim([0, t(end)])
-y_label = ylabel('$m$', 'Interpreter', 'latex', 'rotation', 0);
+y_label = ylabel('$Z$', 'Interpreter', 'latex', 'rotation', 0);
 set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.41]);
 xlabel('Time (sec)', 'Fontsize', 11)
 
@@ -89,34 +89,6 @@ title('Moment of Inertia', 'Fontsize', 11)
 %% Grasp points
 figure(4)
 set(subplot(211), 'Position', [0.17, 0.55, 0.76, 0.35])
-plot(t, sin_data, 'b', 'Linewidth', 2)
-hold on
-plot(t, cos_data, 'r', 'Linewidth', 2)
-grid on
-ylim([-1.5 1.5])
-xlim([0, t(end)])
-y_label = ylabel('$X$ (m)', 'Interpreter', 'latex', 'rotation', 0);
-set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.44]);
-legend('$sin$', '$cos$', 'Interpreter', 'latex')
-title('Position', 'Fontsize', 11)
-
-set(subplot(212), 'Position', [0.17, 0.1, 0.76, 0.35])
-plot(t, sin_data, 'b', 'Linewidth', 2)
-hold on
-plot(t, cos_data, 'r', 'Linewidth', 2)
-grid on
-ylim([-1.5 1.5])
-xlim([0, t(end)])
-y_label = ylabel('$Y$ (m)', 'Interpreter', 'latex', 'rotation', 0);
-set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.44]);
-xlabel('Time (sec)', 'Fontsize', 11)
-legend('$sin$', '$cos$', 'Interpreter', 'latex')
-
-
-
-
-figure(4)
-set(subplot(211), 'Position', [0.17, 0.55, 0.76, 0.35])
 plot(t, grasp_point_1(:,1), 'b-*', 'Linewidth', 1.5, 'MarkerIndices',1:700:length(t));
 hold on
 plot(t, grasp_point_1(:,2), 'r-s', 'Linewidth', 1.5, 'MarkerIndices',1:700:length(t));
@@ -127,24 +99,55 @@ yline(ground_truth_r1,'--','ground truth');
 grid on
 % ylim([-1.5 1.5])
 xlim([0, t(end)])
-y_label = ylabel('$X$ (m)', 'Interpreter', 'latex', 'rotation', 0);
+y_label = ylabel('$r_1$', 'Interpreter', 'latex', 'rotation', 0);
 set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.44]);
 legend('$r_{1x}$', '$r_{1y}$', '$r_{1z}$', 'Interpreter', 'latex')
 title('Grasp points', 'Fontsize', 11)
 
+set(subplot(212), 'Position', [0.17, 0.1, 0.76, 0.35])
 plot(t, grasp_point_2(:,1), 'm--+', 'Linewidth', 1.5, 'MarkerIndices',1:700:length(t));
 hold on
 plot(t, grasp_point_2(:,2), 'k-h', 'Linewidth', 1.5, 'MarkerIndices',1:700:length(t));
 hold on
 plot(t, grasp_point_2(:,3), 'y:o', 'Linewidth', 1.5, 'MarkerIndices',1:700:length(t));
-
 hold on
 yline(ground_truth_r2,'--','ground truth');
 grid on
 % ylim([-0.002 0.017])
 xlim([0, t(end)])
-y_label = ylabel('$r_i$ $(kg\cdot m^2)$', 'Interpreter', 'latex', 'rotation', 0);
-set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.47]);
+y_label = ylabel('$r_2$', 'Interpreter', 'latex', 'rotation', 0);
+set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.44]);
 xlabel('Time (sec)', 'Fontsize', 11)
-legend('$r_{1x}$', '$r_{1y}$', '$r_{1z}$', '$r_{2x}$', '$r_{2y}$','$r_{2z}$', 'Interpreter', 'latex', 'Location','southeast')
-title('Grasp points', 'Fontsize', 11)
+legend('$r_{2x}$', '$r_{2y}$','$r_{2z}$', 'Interpreter', 'latex', 'Location','southeast')
+
+%% Normalized estimate errors
+% calculate
+mass_err_nor = (mass - ground_truth_m) / ground_truth_m;
+COM_err_nor = vecnorm((center_of_mass - ground_truth_COM)) / norm(ground_truth_COM);
+I_err_nor = vecnorm(moment_of_inertia - ground_truth_I) / norm(ground_truth_I);
+r1_err_nor = vecnorm(grasp_point_1 - ground_truth_r1) / norm(ground_truth_r1);
+r2_err_nor = vecnorm(grasp_point_2 - ground_truth_r2) / norm(ground_truth_r2);
+
+% plot
+figure(5)
+semilogy(t, mass_err_nor, 'Linewidth', 2)
+hold on
+semilogy(t, COM_err_nor, 'Linewidth', 2)
+hold on
+semilogy(t, I_err_nor, 'Linewidth', 2)
+hold on
+semilogy(t, r1_err_nor, 'Linewidth', 2)
+hold on
+semilogy(t, r2_err_nor, 'Linewidth', 2)
+grid on
+% ylim([0.000001, 100])
+xlim([0, t(end)])
+y_label = ylabel('$\frac{\left\Vert{\widetilde \theta}_o\right\Vert}{\left\Vert \theta_o\right\Vert}$', 'Interpreter', 'latex', 'rotation', 0);
+set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.41], 'FontSize',14);
+xlabel('Time (sec)', 'Fontsize', 11)
+m_lab = '$\frac{\left\Vert\widetilde m\right\Vert}{\left\Vert m\right\Vert}$';
+COM_lab = '$\frac{\left\Vert{\widetilde r}_p\right\Vert}{\left\Vert r_p\right\Vert}$';
+I_lab = '$\frac{\left\Vert\widetilde I\right\Vert}{\left\Vert I\right\Vert}$';
+r1_lab = '$\frac{\left\Vert{\widetilde r}_1\right\Vert}{\left\Vert r_1\right\Vert}$';
+r2_lab = '$\frac{\left\Vert{\widetilde r}_2\right\Vert}{\left\Vert r_2\right\Vert}$';
+legend(m_lab, COM_lab, I_lab, r1_lab, r2_lab, 'Interpreter', 'latex', 'FontSize',14)
