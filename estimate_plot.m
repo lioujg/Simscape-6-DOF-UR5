@@ -140,7 +140,7 @@ semilogy(t, r1_err_nor, 'Linewidth', 2)
 hold on
 semilogy(t, r2_err_nor, 'Linewidth', 2)
 grid on
-% ylim([0.000001, 100])
+ylim([1e-11, 100])
 xlim([0, t(end)])
 y_label = ylabel('$\frac{\left\Vert{\widetilde \theta}_o\right\Vert}{\left\Vert \theta_o\right\Vert}$', 'Interpreter', 'latex', 'rotation', 0);
 set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.41], 'FontSize',14);

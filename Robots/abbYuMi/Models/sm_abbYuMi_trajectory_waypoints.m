@@ -194,9 +194,9 @@ clearTargetVariables(ks);
 targetIDsR = ["HandR.Translation.x";"HandR.Translation.y";"HandR.Translation.z";"HandR.Rotation.x";"HandR.Rotation.y";"HandR.Rotation.z"];
 addTargetVariables(ks,targetIDsR);
 
-% outputIDsR = ["j12.Rz.q";"j13.Rz.q";"j18.Rz.q";"j14.Rz.q";"j15.Rz.q";"j16.Rz.q";"j17.Rz.q"];
+outputIDsR = ["j12.Rz.q";"j13.Rz.q";"j18.Rz.q";"j14.Rz.q";"j15.Rz.q";"j16.Rz.q";"j17.Rz.q"];
 % outputIDsR = ["j14.Rz.q";"j15.Rz.q";"j20.Rz.q";"j16.Rz.q";"j17.Rz.q";"j18.Rz.q";"j19.Rz.q"];
-outputIDsR = ["j13.Rz.q";"j14.Rz.q";"j19.Rz.q";"j15.Rz.q";"j16.Rz.q";"j17.Rz.q";"j18.Rz.q"];
+% outputIDsR = ["j13.Rz.q";"j14.Rz.q";"j19.Rz.q";"j15.Rz.q";"j16.Rz.q";"j17.Rz.q";"j18.Rz.q"];
 addOutputVariables(ks,outputIDsR);
 addInitialGuessVariables(ks,outputIDsR);
 
