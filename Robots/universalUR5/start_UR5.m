@@ -17,5 +17,5 @@ damping = 10;
 tran = 1e-6;
 degree = 0.5;
 
-%%
-rp = [-0.2 0 0.1];
+%% Measurement Point
+rp = [0.2 0 0.1];
