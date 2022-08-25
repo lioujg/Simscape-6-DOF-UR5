@@ -18,4 +18,4 @@ tran = 1e-6;
 degree = 0.5;
 
 %% Measurement Point
-rp = [0.2 0 0.1];
+rp = [-0.2 0 0.1];

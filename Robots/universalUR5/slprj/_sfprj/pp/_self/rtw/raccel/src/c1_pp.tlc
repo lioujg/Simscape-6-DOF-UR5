@@ -1,0 +1,101 @@
+%implements "chartSource" "C"
+%function ChartConfig(block, system) void
+  %createrecord chartConfiguration { ...
+          executeAtInitialization  0 ...
+  }
+  %return chartConfiguration
+%endfunction
+%function ChartDataMap(block, system) void
+  %createrecord ChartDataElements {\
+    NumChartData   11 \
+    ChartDataDefaults {\
+      RecordType   "ChartData"\
+      Dimensions   []\
+      IsTestPoint  0\
+    }\
+    ChartData {\
+      Name         "w_last"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "pp:590:1349-1355"\
+      Dimensions   [3]\
+    }\
+    ChartData {\
+      Name         "index"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "pp:590:1368-1373"\
+    }\
+    ChartData {\
+      Name         "index_not_empty"\
+      Description  "EmlPersistentSentinel"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "pp:590:1368-1373"\
+    }\
+    ChartData {\
+      Name         "mat_matrix"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "pp:590:1386-1396"\
+      Dimensions   [16,10]\
+    }\
+    ChartData {\
+      Name         "theta_o_hat"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "pp:590:1409-1420"\
+      Dimensions   [16]\
+    }\
+    ChartData {\
+      Name         "theta_o"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "pp:590:1433-1440"\
+      Dimensions   [16]\
+    }\
+    ChartData {\
+      Name         "Rd"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "pp:590:1453-1455"\
+      Dimensions   [3,3]\
+    }\
+    ChartData {\
+      Name         "xd"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "pp:590:1468-1470"\
+      Dimensions   [3]\
+    }\
+    ChartData {\
+      Name         "ICL_update"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "pp:590:1483-1493"\
+    }\
+    ChartData {\
+      Name         "t_last"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "pp:590:1506-1512"\
+    }\
+    ChartData {\
+      Name         "eason_ptr"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "pp:590:1525-1534"\
+    }\
+  }
+  %return ChartDataElements
+%endfunction
