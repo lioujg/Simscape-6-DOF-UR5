@@ -15,12 +15,12 @@ rp = [-0.1 0 0.1];
 %% Ref Signal
 % translation
 % x
-vx_amp = 0.55;
-vx_f = 0.8;
+vx_amp = 0.45;
+vx_f = 0.7;
 vx_start = 0;
 vx_end = 50;
 % y
-vy_amp = -0.75;
+vy_amp = -0.9;
 vy_f = 0.85;
 vy_start = 0;
 vy_end = 50;
@@ -37,8 +37,8 @@ wx_f = 0.55;
 wx_start = 0;
 wx_end = 50;
 % y
-wy_amp = -1.2;
-wy_f = 0.95;
+wy_amp = 1.0;
+wy_f = 0.9;
 wy_start = 0;
 wy_end = 50;
 % z
