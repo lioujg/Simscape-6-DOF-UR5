@@ -3,11 +3,13 @@ close all
 ICL_update = "online";
 % ICL_update = "offline";
 if ICL_update == "online"
-    data = out.debug.signals.values;
+    data = out.debug6.signals.values;
     t = out.debug.time;
+    mark = 4000;
 elseif ICL_update == "offline"
     data = estimate.';
     t = t_;
+    mark = 2000;
 end
 
 mass = data(:,1);
@@ -78,17 +80,17 @@ xlabel('Time (sec)', 'Fontsize', 11)
 %% Moment of Inertia
 figure(3)
 subplot('Position', [0.17, 0.1, 0.76, 0.8]);
-plot(t, moment_of_inertia(:,1), 'b-*', 'Linewidth', 1.5, 'MarkerIndices',1:700:length(t));
+plot(t, moment_of_inertia(:,1), 'b-*', 'Linewidth', 1.5, 'MarkerIndices',1:mark:length(t));
 hold on
-plot(t, moment_of_inertia(:,2), 'r-s', 'Linewidth', 1.5, 'MarkerIndices',1:700:length(t));
+plot(t, moment_of_inertia(:,2), 'r-s', 'Linewidth', 1.5, 'MarkerIndices',1:mark:length(t));
 hold on
-plot(t, moment_of_inertia(:,3), 'g->', 'Linewidth', 1.5, 'MarkerIndices',1:700:length(t));
+plot(t, moment_of_inertia(:,3), 'g->', 'Linewidth', 1.5, 'MarkerIndices',1:mark:length(t));
 hold on
-plot(t, moment_of_inertia(:,4), 'm--+', 'Linewidth', 1.5, 'MarkerIndices',1:700:length(t));
+plot(t, moment_of_inertia(:,4), 'm--+', 'Linewidth', 1.5, 'MarkerIndices',1:mark:length(t));
 hold on
-plot(t, moment_of_inertia(:,5), 'y-h', 'Linewidth', 1.5, 'MarkerIndices',1:700:length(t));
+plot(t, moment_of_inertia(:,5), 'y-h', 'Linewidth', 1.5, 'MarkerIndices',1:mark:length(t));
 hold on
-plot(t, moment_of_inertia(:,6), 'k:o', 'Linewidth', 1.5, 'MarkerIndices',1:700:length(t));
+plot(t, moment_of_inertia(:,6), 'k:o', 'Linewidth', 1.5, 'MarkerIndices',1:mark:length(t));
 hold on
 yline(ground_truth_I,'--','ground truth');
 grid on
@@ -103,11 +105,11 @@ title('Moment of Inertia', 'Fontsize', 11)
 %% Grasp points
 figure(4)
 set(subplot(211), 'Position', [0.17, 0.55, 0.76, 0.35])
-plot(t, grasp_point_1(:,1), 'b-*', 'Linewidth', 1.5, 'MarkerIndices',1:700:length(t));
+plot(t, grasp_point_1(:,1), 'b-*', 'Linewidth', 1.5, 'MarkerIndices',1:mark:length(t));
 hold on
-plot(t, grasp_point_1(:,2), 'r-s', 'Linewidth', 1.5, 'MarkerIndices',1:700:length(t));
+plot(t, grasp_point_1(:,2), 'r-s', 'Linewidth', 1.5, 'MarkerIndices',1:mark:length(t));
 hold on
-plot(t, grasp_point_1(:,3), 'g->', 'Linewidth', 1.5, 'MarkerIndices',1:700:length(t));
+plot(t, grasp_point_1(:,3), 'g->', 'Linewidth', 1.5, 'MarkerIndices',1:mark:length(t));
 hold on
 yline(ground_truth_r1,'--','ground truth');
 grid on
@@ -119,11 +121,11 @@ legend('$r_{1x}$', '$r_{1y}$', '$r_{1z}$', 'Interpreter', 'latex')
 title('Grasp points', 'Fontsize', 11)
 
 set(subplot(212), 'Position', [0.17, 0.1, 0.76, 0.35])
-plot(t, grasp_point_2(:,1), 'm--+', 'Linewidth', 1.5, 'MarkerIndices',1:700:length(t));
+plot(t, grasp_point_2(:,1), 'm--+', 'Linewidth', 1.5, 'MarkerIndices',1:mark:length(t));
 hold on
-plot(t, grasp_point_2(:,2), 'k-h', 'Linewidth', 1.5, 'MarkerIndices',1:700:length(t));
+plot(t, grasp_point_2(:,2), 'k-h', 'Linewidth', 1.5, 'MarkerIndices',1:mark:length(t));
 hold on
-plot(t, grasp_point_2(:,3), 'y:o', 'Linewidth', 1.5, 'MarkerIndices',1:700:length(t));
+plot(t, grasp_point_2(:,3), 'y:o', 'Linewidth', 1.5, 'MarkerIndices',1:mark:length(t));
 hold on
 yline(ground_truth_r2,'--','ground truth');
 grid on
@@ -141,6 +143,9 @@ COM_err_nor = abs(vecnorm((center_of_mass - ground_truth_COM), 2, 2) / norm(grou
 I_err_nor = abs(vecnorm((moment_of_inertia - ground_truth_I), 2, 2) / norm(ground_truth_I));
 r1_err_nor = abs(vecnorm((grasp_point_1 - ground_truth_r1), 2, 2) / norm(ground_truth_r1));
 r2_err_nor = abs(vecnorm((grasp_point_2 - ground_truth_r2), 2, 2) / norm(ground_truth_r2));
+
+est_err_nor = ["mass", "center of mass", "moment of inertia", "r1", "r2";
+               mass_err_nor(end), COM_err_nor(end), I_err_nor(end), r1_err_nor(end), r2_err_nor(end)];
 
 % plot
 figure(5)

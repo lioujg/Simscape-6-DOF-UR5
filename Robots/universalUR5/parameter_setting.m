@@ -13,6 +13,8 @@ damp_g = 0.05;
 rp = [-0.1 0 0.1];
 
 %% Ref Signal
+ref_sample = 0.1; %0.0001
+t = [0:ref_sample:50]';
 % translation
 % x
 vx_amp = 0.45;
@@ -30,6 +32,14 @@ vz_f = 0.75;
 vz_start = 0;
 vz_end = 50;
 
+vx = vx_amp * sin(vx_f * 2 * pi * t);
+vy = vy_amp * sin(vy_f * 2 * pi * t);
+vz = vz_amp * sin(vz_f * 2 * pi * t);
+
+ax = vx_f * 2 * pi * vx_amp * cos(vx_f * 2 * pi * t);
+ay = vy_f * 2 * pi * vy_amp * cos(vy_f * 2 * pi * t);
+az = vz_f * 2 * pi * vz_amp * cos(vz_f * 2 * pi * t);
+
 % rotation
 % x
 wx_amp = 0.7;
@@ -46,3 +56,11 @@ wz_amp = 0.7;
 wz_f = 0.7;
 wz_start = 0;
 wz_end = 50;
+
+wx = wx_amp * sin(wx_f * 2 * pi * t);
+wy = wy_amp * sin(wy_f * 2 * pi * t);
+wz = wz_amp * sin(wz_f * 2 * pi * t);
+
+alx = wx_f * 2 * pi * wx_amp * cos(wx_f * 2 * pi * t);
+aly = wy_f * 2 * pi * wy_amp * cos(wy_f * 2 * pi * t);
+alz = wz_f * 2 * pi * wz_amp * cos(wz_f * 2 * pi * t);
