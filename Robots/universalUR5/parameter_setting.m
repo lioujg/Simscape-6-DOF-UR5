@@ -14,7 +14,8 @@ rp = [-0.1 0 0.1];
 
 %% Ref Signal
 ref_sample = 0.1; %0.0001
-t = [0:ref_sample:50]';
+duration = 80;
+t = [0:ref_sample:duration]';
 % translation
 % x
 vx_amp = 0.45;
