@@ -13,8 +13,8 @@ damp_g = 0.05;
 rp = [-0.1 0 0.1];
 
 %% Ref Signal
-ref_sample = 0.1; %0.0001
-duration = 80;
+ref_sample = 0.0001; %0.0001
+duration = 50;
 t = [0:ref_sample:duration]';
 % translation
 % x

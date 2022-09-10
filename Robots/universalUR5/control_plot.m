@@ -16,9 +16,15 @@ data = out.debug3.signals.values;
 vd = data;
 
 data = out.debug4.signals.values;
-s_norm = data;
+w = data;
 
 data = out.debug5.signals.values;
+wd = data;
+
+data = out.debug6.signals.values;
+s_norm = data;
+
+data = out.debug7.signals.values;
 Re = data;
 
 %% Position
@@ -95,8 +101,45 @@ set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.41]);
 xlabel('Time (sec)', 'Fontsize', 11)
 legend('$v$', '$v_d$', 'Interpreter', 'latex')
 
-%% Composite Error
+%% Angular Velocity
 figure(3)
+set(subplot(311), 'Position', [0.17, 0.7, 0.76, 0.2])
+plot(t, w(:,1), 'r', 'Linewidth', 1);
+hold on
+plot(t, wd(:,1), 'b--', 'Linewidth', 1);
+grid on
+ylim([-1.5, 2])
+xlim([0, t(end)])
+y_label = ylabel('$X$', 'Interpreter', 'latex', 'rotation', 0);
+set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.41]);
+legend('$\omega$', '$\omega_d$', 'Interpreter', 'latex')
+title('Angular Velocity', 'Fontsize', 11)
+
+set(subplot(312), 'Position', [0.17, 0.4, 0.76, 0.2])
+plot(t, w(:,2), 'r', 'Linewidth', 1);
+hold on
+plot(t, wd(:,2), 'b--', 'Linewidth', 1);
+grid on
+ylim([-3, 3])
+xlim([0, t(end)])
+y_label = ylabel('$Y$', 'Interpreter', 'latex', 'rotation', 0);
+set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.41]);
+legend('$\omega$', '$\omega_d$', 'Interpreter', 'latex')
+
+set(subplot(313), 'Position', [0.17, 0.1, 0.76, 0.2])
+plot(t, w(:,3), 'r', 'Linewidth', 1);
+hold on
+plot(t, wd(:,3), 'b--', 'Linewidth', 1);
+grid on
+ylim([-1.5, 1.5])
+xlim([0, t(end)])
+y_label = ylabel('$Z$', 'Interpreter', 'latex', 'rotation', 0);
+set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.41]);
+xlabel('Time (sec)', 'Fontsize', 11)
+legend('$\omega$', '$\omega_d$', 'Interpreter', 'latex')
+
+%% Composite Error
+figure(4)
 subplot('Position', [0.17, 0.1, 0.76, 0.8]);
 plot(t, s_norm, 'Linewidth', 1);
 grid on
@@ -109,7 +152,7 @@ xlabel('Time (sec)', 'Fontsize', 11)
 % title('Composite Error', 'Fontsize', 11)
 
 %% Rotation Error
-figure(4)
+figure(5)
 subplot('Position', [0.17, 0.1, 0.76, 0.8]);
 plot(t, Re, 'Linewidth', 1);
 grid on
