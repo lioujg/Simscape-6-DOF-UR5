@@ -3,7 +3,7 @@ close all
 ICL_update = "online";
 % ICL_update = "offline";
 if ICL_update == "online"
-    data = adaptive.debug6.signals.values;
+    data = ICL.debug6.signals.values;
     t = out.debug.time;
     mark = 4000;
     switch_time = 5;
@@ -112,39 +112,33 @@ plot(t, grasp_point_1(:,2), 'r-s', 'Linewidth', 1.5, 'MarkerIndices',1:mark:leng
 hold on
 plot(t, grasp_point_1(:,3), 'g->', 'Linewidth', 1.5, 'MarkerIndices',1:mark:length(t));
 hold on
-for switch_star = switch_time:switch_time:t(end)
-    scatter(switch_star,grasp_point_2(find(ismember(t,switch_star)),:),200,'filled','p','k');
-end
-
-hold on
 yline(ground_truth_r1,'--','ground truth');
+hold on
+for t = 0:s
+scatter
 grid on
-ylim([-0.4 0.06])
+% ylim([-1.5 1.5])
 xlim([0, t(end)])
 y_label = ylabel('$r_1$', 'Interpreter', 'latex', 'rotation', 0);
 set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.44]);
-legend('$r_{1x}$', '$r_{1y}$', '$r_{1z}$', 'leader switch', 'Interpreter', 'latex')
+legend('$r_{1x}$', '$r_{1y}$', '$r_{1z}$', 'Interpreter', 'latex')
 title('Grasp points', 'Fontsize', 11)
 
 set(subplot(212), 'Position', [0.17, 0.1, 0.76, 0.35])
-plot(t, grasp_point_2(:,1), 'b-*', 'Linewidth', 1.5, 'MarkerIndices',1:mark:length(t));
+plot(t, grasp_point_2(:,1), 'm--+', 'Linewidth', 1.5, 'MarkerIndices',1:mark:length(t));
 hold on
-plot(t, grasp_point_2(:,2), 'r-s', 'Linewidth', 1.5, 'MarkerIndices',1:mark:length(t));
+plot(t, grasp_point_2(:,2), 'k-h', 'Linewidth', 1.5, 'MarkerIndices',1:mark:length(t));
 hold on
-plot(t, grasp_point_2(:,3), 'g->', 'Linewidth', 1.5, 'MarkerIndices',1:mark:length(t));
-hold on
-for switch_star = switch_time:switch_time:t(end)
-    scatter(switch_star,grasp_point_2(find(ismember(t,switch_star)),:),200,'filled','p','k');
-end
+plot(t, grasp_point_2(:,3), 'y:o', 'Linewidth', 1.5, 'MarkerIndices',1:mark:length(t));
 hold on
 yline(ground_truth_r2,'--','ground truth');
 grid on
-ylim([-0.15 0.45])
+% ylim([-0.002 0.017])
 xlim([0, t(end)])
 y_label = ylabel('$r_2$', 'Interpreter', 'latex', 'rotation', 0);
 set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.44]);
 xlabel('Time (sec)', 'Fontsize', 11)
-legend('$r_{2x}$', '$r_{2y}$','$r_{2z}$', 'leader switch', 'Interpreter', 'latex', 'Location','southeast')
+legend('$r_{2x}$', '$r_{2y}$','$r_{2z}$', 'Interpreter', 'latex', 'Location','southeast')
 
 %% Normalized estimate errors
 % calculate
