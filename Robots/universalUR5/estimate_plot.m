@@ -113,7 +113,7 @@ hold on
 plot(t, grasp_point_1(:,3), 'g->', 'Linewidth', 1.5, 'MarkerIndices',1:mark:length(t));
 hold on
 for switch_star = switch_time:switch_time:t(end)
-    scatter(switch_star,grasp_point_2(find(ismember(t,switch_star)),:),200,'filled','p','k');
+    scatter(switch_star,grasp_point_1(find(t==switch_star),:),200,'filled','p','k');
 end
 
 hold on
@@ -134,7 +134,7 @@ hold on
 plot(t, grasp_point_2(:,3), 'g->', 'Linewidth', 1.5, 'MarkerIndices',1:mark:length(t));
 hold on
 for switch_star = switch_time:switch_time:t(end)
-    scatter(switch_star,grasp_point_2(find(ismember(t,switch_star)),:),200,'filled','p','k');
+    scatter(switch_star,grasp_point_2(find(t==switch_star),:),200,'filled','p','k');
 end
 hold on
 yline(ground_truth_r2,'--','ground truth');
