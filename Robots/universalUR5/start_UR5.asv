@@ -1,0 +1,6 @@
+clc
+close all
+addpath([pwd filesep 'Geometry']);
+robot = importrobot('sm_universalUR5.urdf');
+open('pp.slx');
+parameter_setting;
