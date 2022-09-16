@@ -155,7 +155,7 @@ r1_err_nor = abs(vecnorm((grasp_point_1 - ground_truth_r1), 2, 2) / norm(ground_
 r2_err_nor = abs(vecnorm((grasp_point_2 - ground_truth_r2), 2, 2) / norm(ground_truth_r2));
 
 est_err_nor = ["mass", "center of mass", "moment of inertia", "r1", "r2";
-               mass_err_nor(end), COM_err_nor(end), min(I_err_nor), r1_err_nor(end), r2_err_nor(end)];
+               mass_err_nor(end), COM_err_nor(end), I_err_nor(end), r1_err_nor(end), r2_err_nor(end)];
 
 % plot
 figure(5)

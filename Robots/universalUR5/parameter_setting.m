@@ -14,7 +14,7 @@ rp = [-0.1 0 0.1];
 
 %% Ref Signal
 ref_sample = 0.1; %0.0001
-duration = 100;
+duration = 90;
 t = [0:ref_sample:duration]';
 % translation
 % x
