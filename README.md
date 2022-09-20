@@ -1,18 +1,20 @@
-# **Industrial Robot Models in Simscape**
+# **Parameters Estimation of Payloads Using Integral
+Concurrent Learning and Collaborative
+Manipulation**
 Copyright 2021 The MathWorks, Inc.
 
 ![image]( https://github.com/lioujg/Simscape-6-DOF-UR5/blob/Controller/Robots/universalUR5/system%20module/md.gif)
 
-![](Scripts/Images/sm_industrial_robots_overview_image_ribbon.png)
+This repository of industrial robot models for use with [Simscape Multibody](https://www.mathworks.com/products/simscape-multibody.html) includes mobile and manipulator robots. 
 
-This repository of industrial robot models for use with [Simscape Multibody](https://www.mathworks.com/products/simscape-multibody.html) includes mobile and manipulator robots. It has examples that help you:
+# ** Requirements **
+* Matlab R2021a
+* Simulink
+* Simscape
+* Simscape Multibody
 
-* Import URDF files using MATLAB to create models
-* Perform kinematic and dynamic analyses
-* Integrate electric drives and control algorithms in [Simulink](https://www.mathworks.com/products/simulink.html)
-* Leverage Robotics System Toolbox for [path and trajectory planning](https://www.mathworks.com/products/robotics.html#robalg).
 
-Run file startup_sm_industrial_robots.m to get started.
+Run file startup_UR5.m to get started.
 
 To learn more about modeling and simulation with Simscape, please visit:
 * [Simscape Getting Started Resources](https://www.mathworks.com/solutions/physical-modeling/resources.html)
