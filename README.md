@@ -1,6 +1,8 @@
 # **Industrial Robot Models in Simscape**
 Copyright 2021 The MathWorks, Inc.
 
+![image]( https://github.com/lioujg/Simscape-6-DOF-UR5/blob/Controller/Robots/universalUR5/system%20module/md.gif)
+
 ![](Scripts/Images/sm_industrial_robots_overview_image_ribbon.png)
 
 This repository of industrial robot models for use with [Simscape Multibody](https://www.mathworks.com/products/simscape-multibody.html) includes mobile and manipulator robots. It has examples that help you:
