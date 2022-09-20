@@ -5,7 +5,7 @@ ICL_update = "online";
 if ICL_update == "online"
     data = out.debug8.signals.values;
     t = out.debug.time;
-    mark = 5000;
+    mark = 4000;
     switch_time = 5;
 elseif ICL_update == "offline"
     data = estimate.';
@@ -72,7 +72,7 @@ plot(t, center_of_mass(:,3), 'k', 'Linewidth', 1);
 hold on
 yline(ground_truth_COM(3),'--','ground truth');
 grid on
-ylim([-0.05, 0.25])
+ylim([-0.05, 0.22])
 xlim([0, t(end)])
 y_label = ylabel('$Z$', 'Interpreter', 'latex', 'rotation', 0);
 set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.41]);
@@ -95,7 +95,7 @@ plot(t, moment_of_inertia(:,6), 'k:o', 'Linewidth', 1.5, 'MarkerIndices',1:mark:
 hold on
 yline(ground_truth_I,'--','ground truth');
 grid on
-ylim([-0.05 0.1])
+ylim([-0.002 0.017])
 xlim([0, t(end)])
 y_label = ylabel('$I$ $(kg\cdot m^2)$', 'Interpreter', 'latex', 'rotation', 0);
 set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.47]);
@@ -113,7 +113,7 @@ hold on
 plot(t, grasp_point_1(:,3), 'g->', 'Linewidth', 1.5, 'MarkerIndices',1:mark:length(t));
 hold on
 for switch_star = switch_time:switch_time:t(end)
-    scatter(switch_star,grasp_point_1(find(t==switch_star),:),80,'filled','p','k');
+    scatter(switch_star,grasp_point_1(find(t==switch_star),:),200,'filled','p','k');
 end
 
 hold on
@@ -134,7 +134,7 @@ hold on
 plot(t, grasp_point_2(:,3), 'g->', 'Linewidth', 1.5, 'MarkerIndices',1:mark:length(t));
 hold on
 for switch_star = switch_time:switch_time:t(end)
-    scatter(switch_star,grasp_point_2(find(t==switch_star),:),80,'filled','p','k');
+    scatter(switch_star,grasp_point_2(find(t==switch_star),:),200,'filled','p','k');
 end
 hold on
 yline(ground_truth_r2,'--','ground truth');
