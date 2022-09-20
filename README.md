@@ -1,6 +1,4 @@
-# **Parameters Estimation of Payloads Using Integral
-Concurrent Learning and Collaborative
-Manipulation**
+# **Parameters Estimation of Payloads Using Integral Concurrent Learning and Collaborative Manipulation**
 Copyright 2021 The MathWorks, Inc.
 
 ![image]( https://github.com/lioujg/Simscape-6-DOF-UR5/blob/Controller/Robots/universalUR5/system%20module/md.gif)
