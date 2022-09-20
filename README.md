@@ -5,7 +5,7 @@ Copyright 2021 The MathWorks, Inc.
 
 This repository of industrial robot models for use with [Simscape Multibody](https://www.mathworks.com/products/simscape-multibody.html) includes mobile and manipulator robots. 
 
-# ** Requirements **
+# **Requirements**
 * Matlab R2021a
 * Simulink
 * Simscape
