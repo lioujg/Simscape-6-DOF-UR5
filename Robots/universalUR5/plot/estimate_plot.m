@@ -146,6 +146,21 @@ set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.44]);
 xlabel('Time (sec)', 'Fontsize', 11)
 legend('$r_{2x}$', '$r_{2y}$','$r_{2z}$', 'leader switch', 'Interpreter', 'latex', 'Location','southeast')
 
+%% Grasp points Normalize
+figure(5)
+subplot('Position', [0.17, 0.1, 0.76, 0.8]);
+plot(t, abs(vecnorm((grasp_point_1 - ground_truth_r1), 2, 2)), 'Linewidth', 2);
+hold on
+plot(t, abs(vecnorm((grasp_point_2 - ground_truth_r2), 2, 2)), '-.', 'Linewidth', 2);
+grid on
+% ylim([-0.5 9])
+xlim([0, t(end)])
+y_label = ylabel('Distance (m)', 'Interpreter', 'latex', 'rotation', 90);
+set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.47]);
+xlabel('Time (sec)', 'Fontsize', 11)
+legend('$e_{r1}$', '$e_{r2}$', 'Interpreter', 'latex', 'Location','northeast')
+title('Grasp points Errors', 'Fontsize', 11)
+
 %% Normalized estimate errors
 % calculate
 mass_err_nor = abs((mass - ground_truth_m) / ground_truth_m);
@@ -158,7 +173,7 @@ est_err_nor = ["mass", "center of mass", "moment of inertia", "r1", "r2";
                mass_err_nor(end), COM_err_nor(end), I_err_nor(end), r1_err_nor(end), r2_err_nor(end)];
 
 % plot
-figure(5)
+figure(6)
 semilogy(t, mass_err_nor, 'Linewidth', 2)
 hold on
 semilogy(t, COM_err_nor, 'Linewidth', 2)
