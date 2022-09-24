@@ -1,6 +1,15 @@
 clc
 close all
 
+% out.debug.signals.values = out.debug.signals.values(1:100000,:);
+% out.debug1.signals.values = out.debug1.signals.values(1:100000,:);
+% out.debug2.signals.values = out.debug2.signals.values(1:100000,:);
+% out.debug3.signals.values = out.debug3.signals.values(1:100000,:);
+% out.debug4.signals.values = out.debug4.signals.values(1:100000,:);
+% out.debug5.signals.values = out.debug5.signals.values(1:100000,:);
+% out.debug6.signals.values = out.debug6.signals.values(1:100000,:);
+% out.debug7.signals.values = out.debug7.signals.values(1:100000,:);
+
 t = out.debug.time;
 
 data = out.debug.signals.values;

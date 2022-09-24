@@ -12,6 +12,7 @@ ICL_center_of_mass = data(:,2:4);
 ICL_moment_of_inertia = data(:,5:10);
 ICL_grasp_point_1 = data(:,11:13);
 ICL_grasp_point_2 = data(:,14:16);
+t = ICL.out.debug.time;
 
 %% Load adaptive data
 adaptive = load('adaptive.mat');
