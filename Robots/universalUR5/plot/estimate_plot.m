@@ -103,7 +103,7 @@ xlabel('Time (sec)', 'Fontsize', 11)
 legend('$I_{xx}$', '$I_{xy}$', '$I_{xz}$', '$I_{yy}$', '$I_{yz}$','$I_{zz}$', 'Interpreter', 'latex', 'Location','southeast')
 title('Moment of Inertia', 'Fontsize', 11)
 
-%% Grasp points
+%% Grasping points
 figure(4)
 set(subplot(211), 'Position', [0.17, 0.55, 0.76, 0.35])
 plot(t, grasp_point_1(:,1), 'b-*', 'Linewidth', 1.5, 'MarkerIndices',1:mark:length(t));
@@ -124,7 +124,7 @@ xlim([0, t(end)])
 y_label = ylabel('$r_1$', 'Interpreter', 'latex', 'rotation', 0);
 set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.44]);
 legend('$r_{1x}$', '$r_{1y}$', '$r_{1z}$', 'leader switch', 'Interpreter', 'latex')
-title('Grasp points', 'Fontsize', 11)
+title('Grasping points', 'Fontsize', 11)
 
 set(subplot(212), 'Position', [0.17, 0.1, 0.76, 0.35])
 plot(t, grasp_point_2(:,1), 'b-*', 'Linewidth', 1.5, 'MarkerIndices',1:mark:length(t));
@@ -159,7 +159,7 @@ y_label = ylabel('Distance (m)', 'Interpreter', 'latex', 'rotation', 90);
 set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.47]);
 xlabel('Time (sec)', 'Fontsize', 11)
 legend('$e_{r1}$', '$e_{r2}$', 'Interpreter', 'latex', 'Location','northeast')
-title('Grasp points Errors', 'Fontsize', 11)
+title('Grasping points Errors', 'Fontsize', 11)
 
 %% Normalized estimate errors
 % calculate

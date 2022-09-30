@@ -1,16 +1,20 @@
 clc
 close all
 
-% out.debug.signals.values = out.debug.signals.values(1:100000,:);
-% out.debug1.signals.values = out.debug1.signals.values(1:100000,:);
-% out.debug2.signals.values = out.debug2.signals.values(1:100000,:);
-% out.debug3.signals.values = out.debug3.signals.values(1:100000,:);
-% out.debug4.signals.values = out.debug4.signals.values(1:100000,:);
-% out.debug5.signals.values = out.debug5.signals.values(1:100000,:);
-% out.debug6.signals.values = out.debug6.signals.values(1:100000,:);
-% out.debug7.signals.values = out.debug7.signals.values(1:100000,:);
+select_sec = 30;
+end_data = select_sec / 90 * 180000;
+
+out.debug.signals.values = out.debug.signals.values(1:end_data,:);
+out.debug1.signals.values = out.debug1.signals.values(1:end_data,:);
+out.debug2.signals.values = out.debug2.signals.values(1:end_data,:);
+out.debug3.signals.values = out.debug3.signals.values(1:end_data,:);
+out.debug4.signals.values = out.debug4.signals.values(1:end_data,:);
+out.debug5.signals.values = out.debug5.signals.values(1:end_data,:);
+out.debug6.signals.values = out.debug6.signals.values(1:end_data,:);
+out.debug7.signals.values = out.debug7.signals.values(1:end_data,:);
 
 t = out.debug.time;
+t = t(1:end_data);
 
 data = out.debug.signals.values;
 x = data;
@@ -35,6 +39,20 @@ s_norm = data;
 
 data = out.debug7.signals.values;
 Re = data;
+
+%% Error Compute
+% ex = x - xd;
+% ev = v - vd;
+% ew = w - wd;
+% 
+% ex = ex(170000:end,:);
+% ev = ev(170000:end,:);
+% ew = ew(170000:end,:);
+% s_norm_m = mean(s_norm(100000:end,:));
+% 
+% ex_n = vecnorm(mean(ex,1));
+% ev_n = vecnorm(mean(ev,1));
+% ew_n = vecnorm(mean(ew,1));
 
 %% Position
 figure(1)

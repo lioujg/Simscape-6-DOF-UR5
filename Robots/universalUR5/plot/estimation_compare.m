@@ -192,7 +192,7 @@ y_label = ylabel('Distance (m)', 'Interpreter', 'latex', 'rotation', 90);
 set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.47]);
 xlabel('Time (sec)', 'Fontsize', 11)
 legend('$e_{r1}$ with ICL', '$e_{r2}$ with ICL', '$e_{r1}$ with adaptive', '$e_{r2}$ with adaptive', 'Interpreter', 'latex', 'Location','northeast')
-title('Grasp points Errors', 'Fontsize', 11)
+title('Grasping points Errors', 'Fontsize', 11)
 
 %% Grasp points
 % figure(4)
