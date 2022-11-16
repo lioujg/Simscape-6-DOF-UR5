@@ -12,6 +12,7 @@ out.debug4.signals.values = out.debug4.signals.values(1:end_data,:);
 out.debug5.signals.values = out.debug5.signals.values(1:end_data,:);
 out.debug6.signals.values = out.debug6.signals.values(1:end_data,:);
 out.debug7.signals.values = out.debug7.signals.values(1:end_data,:);
+out.debug8.signals.values = out.debug8.signals.values(1:end_data,:);
 
 t = out.debug.time;
 t = t(1:end_data);
@@ -35,9 +36,12 @@ data = out.debug5.signals.values;
 wd = data;
 
 data = out.debug6.signals.values;
-s_norm = data;
+s_t = data;
 
 data = out.debug7.signals.values;
+s_r = data;
+
+data = out.debug8.signals.values;
 Re = data;
 
 %% Error Compute
@@ -48,7 +52,8 @@ Re = data;
 % ex = ex(170000:end,:);
 % ev = ev(170000:end,:);
 % ew = ew(170000:end,:);
-% s_norm_m = mean(s_norm(100000:end,:));
+% sl_norm_m = mean(s_t(100000:end,:));
+% sigma = mean(s_r(100000:end,:));
 % 
 % ex_n = vecnorm(mean(ex,1));
 % ev_n = vecnorm(mean(ev,1));
@@ -168,14 +173,16 @@ legend('$\omega$', '$\omega_d$', 'Interpreter', 'latex')
 %% Composite Error
 figure(4)
 subplot('Position', [0.17, 0.1, 0.76, 0.8]);
-plot(t, s_norm, 'Linewidth', 1);
+plot(t, s_t, 'Linewidth', 1);
+hold on
+plot(t, s_r, 'r-.', 'Linewidth', 1);
 grid on
 % ylim([-0.5 9])
 xlim([0, t(end)])
 y_label = ylabel('$||s||$', 'Interpreter', 'latex', 'rotation', 0);
 set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.47]);
 xlabel('Time (sec)', 'Fontsize', 11)
-% legend('$m$', 'Interpreter', 'latex', 'Location','southeast')
+legend('$s_t$', '$\sigma$', 'Interpreter', 'latex', 'Location','northeast')
 % title('Composite Error', 'Fontsize', 11)
 
 %% Rotation Error
@@ -183,7 +190,7 @@ figure(5)
 subplot('Position', [0.17, 0.1, 0.76, 0.8]);
 plot(t, Re, 'Linewidth', 1);
 grid on
-ylim([-0.02 0.45])
+ylim([-0.02 0.25])
 xlim([0, t(end)])
 y_label = ylabel('$tr(I-R_e)$', 'Interpreter', 'latex', 'rotation', 90);
 set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.47]);

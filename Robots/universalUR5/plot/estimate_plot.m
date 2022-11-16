@@ -2,6 +2,7 @@ clc
 close all
 ICL_update = "online";
 % ICL_update = "offline";
+leader_switch = false;
 if ICL_update == "online"
     data = out.debug8.signals.values;
     t = out.debug.time;
@@ -40,14 +41,14 @@ grid on
 xlim([0, t(end)])
 y_label = ylabel('$m$ (kg)', 'Interpreter', 'latex', 'rotation', 0);
 set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.47]);
-xlabel('Time (sec)', 'Fontsize', 11)
+xlabel('Time (s)', 'Fontsize', 11)
 % legend('$m$', 'Interpreter', 'latex', 'Location','southeast')
 title('Mass', 'Fontsize', 11)
 
 %% Center of Mass
 figure(2)
 set(subplot(311), 'Position', [0.17, 0.7, 0.76, 0.2])
-plot(t, center_of_mass(:,1), 'k', 'Linewidth', 1);
+plot(t, center_of_mass(:,1), 'Linewidth', 1);
 hold on
 yline(ground_truth_COM(1),'--','ground truth');
 grid on
@@ -58,7 +59,7 @@ set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.41]);
 title('Center of Mass', 'Fontsize', 11)
 
 set(subplot(312), 'Position', [0.17, 0.4, 0.76, 0.2])
-plot(t, center_of_mass(:,2), 'k', 'Linewidth', 1);
+plot(t, center_of_mass(:,2), 'Linewidth', 1);
 hold on
 yline(ground_truth_COM(2),'--','ground truth');
 grid on
@@ -68,7 +69,7 @@ y_label = ylabel('$Y$', 'Interpreter', 'latex', 'rotation', 0);
 set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.41]);
 
 set(subplot(313), 'Position', [0.17, 0.1, 0.76, 0.2])
-plot(t, center_of_mass(:,3), 'k', 'Linewidth', 1);
+plot(t, center_of_mass(:,3), 'Linewidth', 1);
 hold on
 yline(ground_truth_COM(3),'--','ground truth');
 grid on
@@ -76,7 +77,7 @@ ylim([-0.05, 0.25])
 xlim([0, t(end)])
 y_label = ylabel('$Z$', 'Interpreter', 'latex', 'rotation', 0);
 set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.41]);
-xlabel('Time (sec)', 'Fontsize', 11)
+xlabel('Time (s)', 'Fontsize', 11)
 
 %% Moment of Inertia
 figure(3)
@@ -97,11 +98,13 @@ yline(ground_truth_I,'--','ground truth');
 grid on
 ylim([-0.05 0.1])
 xlim([0, t(end)])
-y_label = ylabel('$I$ $(kg\cdot m^2)$', 'Interpreter', 'latex', 'rotation', 0);
+% y_label = ylabel('$I$ $(kg\cdot m^2)$', 'Interpreter', 'latex', 'rotation', 0);
+% y_label = ylabel('I (kg \cdot m^2)', 'rotation', 0);
+y_label = ylabel(['$I$', ' (kg ', '$\cdot$', ' m', '$^2$', ')'], 'Interpreter', 'latex');
 set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.47]);
-xlabel('Time (sec)', 'Fontsize', 11)
+xlabel('Time (s)', 'Fontsize', 11)
 legend('$I_{xx}$', '$I_{xy}$', '$I_{xz}$', '$I_{yy}$', '$I_{yz}$','$I_{zz}$', 'Interpreter', 'latex', 'Location','southeast')
-title('Moment of Inertia', 'Fontsize', 11)
+title('Moment of inertia', 'Fontsize', 11)
 
 %% Grasping points
 figure(4)
@@ -112,8 +115,10 @@ plot(t, grasp_point_1(:,2), 'r-s', 'Linewidth', 1.5, 'MarkerIndices',1:mark:leng
 hold on
 plot(t, grasp_point_1(:,3), 'g->', 'Linewidth', 1.5, 'MarkerIndices',1:mark:length(t));
 hold on
-for switch_star = switch_time:switch_time:t(end)
-    scatter(switch_star,grasp_point_1(find(t==switch_star),:),80,'filled','p','k');
+if leader_switch == true
+    for switch_star = switch_time:switch_time:t(end)
+        scatter(switch_star,grasp_point_1(find(t==switch_star),:),80,'filled','p','k');
+    end
 end
 
 hold on
@@ -123,7 +128,11 @@ ylim([-0.4 0.06])
 xlim([0, t(end)])
 y_label = ylabel('$r_1$', 'Interpreter', 'latex', 'rotation', 0);
 set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.44]);
-legend('$r_{1x}$', '$r_{1y}$', '$r_{1z}$', 'leader switch', 'Interpreter', 'latex')
+if leader_switch == true
+    legend('$r_{1x}$', '$r_{1y}$', '$r_{1z}$', 'leader switch', 'Interpreter', 'latex')
+else
+    legend('$r_{1x}$', '$r_{1y}$', '$r_{1z}$', 'Interpreter', 'latex')
+end
 title('Grasping points', 'Fontsize', 11)
 
 set(subplot(212), 'Position', [0.17, 0.1, 0.76, 0.35])
@@ -133,8 +142,10 @@ plot(t, grasp_point_2(:,2), 'r-s', 'Linewidth', 1.5, 'MarkerIndices',1:mark:leng
 hold on
 plot(t, grasp_point_2(:,3), 'g->', 'Linewidth', 1.5, 'MarkerIndices',1:mark:length(t));
 hold on
-for switch_star = switch_time:switch_time:t(end)
-    scatter(switch_star,grasp_point_2(find(t==switch_star),:),80,'filled','p','k');
+if leader_switch == true
+    for switch_star = switch_time:switch_time:t(end)
+        scatter(switch_star,grasp_point_2(find(t==switch_star),:),80,'filled','p','k');
+    end
 end
 hold on
 yline(ground_truth_r2,'--','ground truth');
@@ -143,8 +154,12 @@ ylim([-0.15 0.45])
 xlim([0, t(end)])
 y_label = ylabel('$r_2$', 'Interpreter', 'latex', 'rotation', 0);
 set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.44]);
-xlabel('Time (sec)', 'Fontsize', 11)
-legend('$r_{2x}$', '$r_{2y}$','$r_{2z}$', 'leader switch', 'Interpreter', 'latex', 'Location','southeast')
+xlabel('Time (s)', 'Fontsize', 11)
+if leader_switch == true
+    legend('$r_{2x}$', '$r_{2y}$','$r_{2z}$', 'leader switch', 'Interpreter', 'latex', 'Location','southeast')
+else
+    legend('$r_{2x}$', '$r_{2y}$','$r_{2z}$', 'Interpreter', 'latex', 'Location','southeast')
+end
 
 %% Grasp points Normalize
 figure(5)
@@ -157,7 +172,7 @@ grid on
 xlim([0, t(end)])
 y_label = ylabel('Distance (m)', 'Interpreter', 'latex', 'rotation', 90);
 set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.47]);
-xlabel('Time (sec)', 'Fontsize', 11)
+xlabel('Time (s)', 'Fontsize', 11)
 legend('$e_{r1}$', '$e_{r2}$', 'Interpreter', 'latex', 'Location','northeast')
 title('Grasping points Errors', 'Fontsize', 11)
 
@@ -188,7 +203,7 @@ ylim([1e-8, 10])
 xlim([0, t(end)])
 y_label = ylabel('$\frac{\left\Vert{\widetilde \theta}_o\right\Vert}{\left\Vert \theta_o\right\Vert}$', 'Interpreter', 'latex', 'rotation', 0);
 set(y_label, 'Units', 'Normalized', 'Position', [-0.13, 0.41], 'FontSize',14);
-xlabel('Time (sec)', 'Fontsize', 11)
+xlabel('Time (s)', 'Fontsize', 11)
 m_lab = '$\frac{\left\Vert\widetilde m\right\Vert}{\left\Vert m\right\Vert}$';
 COM_lab = '$\frac{\left\Vert{\widetilde r}_p\right\Vert}{\left\Vert r_p\right\Vert}$';
 I_lab = '$\frac{\left\Vert\widetilde I\right\Vert}{\left\Vert I\right\Vert}$';
